@@ -48,7 +48,8 @@ public class Mergesort extends General_methods
 
     public static void main(String[] args)
     {
-        String[] a = StdIn.readAllStrings();
+        //String[] a = StdIn.readAllStrings();
+        Comparable[] a = {9, 8, 78, 6, 5, 4, 3, 2, 1};
         sort(a);
         assert isSorted(a);
         show(a);
