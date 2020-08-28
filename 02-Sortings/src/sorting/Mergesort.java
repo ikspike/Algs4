@@ -1,11 +1,9 @@
 package sorting;
 
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Mergesort extends General_methods
+public class Mergesort extends SortingStem
 {
     private static Comparable[] aux;
 
@@ -50,8 +48,11 @@ public class Mergesort extends General_methods
     {
         //String[] a = StdIn.readAllStrings();
         Comparable[] a = {9, 8, 78, 6, 5, 4, 3, 2, 1};
+        StdOut.print("Input: ");
+        show(a);
         sort(a);
         assert isSorted(a);
+        StdOut.print("Sorted: ");
         show(a);
     }
 }

@@ -1,9 +1,8 @@
 package sorting;
 
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
 
-public class Selection_sort extends General_methods
+public class Selection_sort extends SortingStem
 {
     public static void sort(Comparable[] a)
     {

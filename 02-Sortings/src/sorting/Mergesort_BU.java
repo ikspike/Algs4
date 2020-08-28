@@ -1,11 +1,7 @@
 package sorting;
 
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-
-public class Mergesort_BU extends General_methods
+public class Mergesort_BU extends SortingStem
 {
     private static Comparable[] aux;
 
