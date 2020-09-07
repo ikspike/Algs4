@@ -2,7 +2,7 @@ package sorting;
 
 import edu.princeton.cs.algs4.In;
 
-public class Selection_sort extends SortingStem
+public class SelectionSort extends SortingStem
 {
     public static void sort(Comparable[] a)
     {
