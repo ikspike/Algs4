@@ -67,6 +67,17 @@ public class BST<Key extends Comparable<Key>, Value>
         return x;
     }
 
+    public Key min()
+    {
+        return min(root).key;
+    }
+
+    private Node min(Node x)
+    {
+        if (x.left == null) return x;
+        return min(x.left);
+    }
+
     public void deleteMin()
     {
         root = deleteMin(root);
@@ -80,5 +91,28 @@ public class BST<Key extends Comparable<Key>, Value>
         return x;
     }
 
+    public void delete(Key key)
+    {
+        delete(root, key);
+    }
+
+    private Node delete(Node x, Key key)
+    {
+        if (x == null) return null;
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0) x.left = delete(x.left, key);
+        if (cmp > 0) x.right = delete(x.right, key);
+        else
+        {
+            if (x.left == null) return x.right;
+            if (x.right == null) return x.left;
+            Node temp = x;  // Temp value for the key to delete.
+            x = min(temp.right);    // Let x be the successor of the key to delete.
+            x.right = deleteMin(temp.right);    // Delete the successor.
+            x.left = temp.left;
+        }
+        x.N = size(x.left) + size(x.right) + 1;
+        return x;
+    }
 }
 
