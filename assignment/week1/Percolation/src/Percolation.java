@@ -8,9 +8,11 @@
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+
 import java.util.Random;
 
-public class Percolation {
+public class Percolation
+{
     private WeightedQuickUnionUF uf;
     private boolean[][] grid;
     private int Num;    // Edge nodes number
@@ -20,13 +22,17 @@ public class Percolation {
     private static final boolean BLOCK = false;
     private static final boolean OPEN = true;
 
-    public Percolation(int n){
+    private static final boolean show_graph = true;
+
+    public Percolation(int n)
+    {
         Num = n;
         // Initialize WQU with one top and one bottom site.
         uf = new WeightedQuickUnionUF(n * n + 2);
         Top = n * n;
         Bottom = n * n + 1;
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++)
+        {
             // Connect first line to top node
             uf.union(i, Top);
             // Connect last line to bottom node
@@ -35,9 +41,11 @@ public class Percolation {
 
         // Initialize n by n gird with all sites blocked
         // By convention, (1, 1) is the upper-left site
-        grid = new boolean[n+1][n+1];
-        for (boolean[] sites : grid){
-            for(boolean site : sites){
+        grid = new boolean[n + 1][n + 1];
+        for (boolean[] sites : grid)
+        {
+            for (boolean site : sites)
+            {
                 site = BLOCK;
             }
         }
@@ -45,8 +53,9 @@ public class Percolation {
     }
 
 
-    public void open(int row, int col){
-        int index = coor2index(row , col);
+    public void open(int row, int col)
+    {
+        int index = coor2index(row, col);
         if (!isOpen(row, col))
         {
             grid[row][col] = OPEN;
@@ -78,49 +87,68 @@ public class Percolation {
         }
     }
 
-    public boolean isOpen(int row, int col){
+    public boolean isOpen(int row, int col)
+    {
         // is site (row, col) open?
         return grid[row][col];
     }
 
 
-    public boolean isFull(int row, int col){
-        int index = coor2index(row , col);
+    public boolean isFull(int row, int col)
+    {
+        int index = coor2index(row, col);
         return uf.connected(index, Top);
     }
 
-    public int numberOfOpenSites(){
+    public int numberOfOpenSites()
+    {
         // number of open sites
         return NumOfOpenSites;
 
     }
 
-    public boolean percolates(){
+    public boolean percolates()
+    {
         // does the system percolate?
         return uf.connected(Top, Bottom);
     }
 
-    private int coor2index(int row, int col){
+    private int coor2index(int row, int col)
+    {
         return Num * (row - 1) + (col - 1);
     }
 
-    public void reset(){
-        for (boolean[] sites : grid){
-            for(boolean site : sites){
+    public void reset()
+    {
+        for (boolean[] sites : grid)
+        {
+            for (boolean site : sites)
+            {
                 site = BLOCK;
             }
         }
-
     }
 
-    public static void main(String[] args){
+    public WeightedQuickUnionUF getUf()
+    {
+        return uf;
+    }
+
+    public static void main(String[] args)
+    {
         // test client (optional)
-        int n = StdIn.readInt();
-        Percolation p = new Percolation(n);
+        int N;
+        if (args.length == 1)
+            N = Integer.parseInt(args[0]);
+        else
+            N = StdIn.readInt();
+
+        Percolation p = new Percolation(N);
         System.out.println("Percolate? " + p.percolates());
         Random r = new Random();
-        while(!p.percolates()){
-            p.open(r.nextInt(n) + 1, r.nextInt(n) + 1);
+        while (!p.percolates())
+        {
+            p.open(r.nextInt(N) + 1, r.nextInt(N) + 1);
         }
         System.out.println("numberOfOpenSites: " + p.numberOfOpenSites());
         System.out.println("Percolate? " + p.percolates());

@@ -1,35 +1,45 @@
 import edu.princeton.cs.algs4.StdStats;
+
 import java.util.Random;
 
-public class PercolationStats {
+public class PercolationStats
+{
     private static int[] probs;
 
-    public PercolationStats(int n, int trials){
+    public PercolationStats(int n, int trials)
+    {
         // perform trials independent experiments on an n-by-n grid
-        if(n <= 0 || trials <= 0)
+        if (n <= 0 || trials <= 0)
             throw new IllegalArgumentException("N or trials less than 0!");
 
     }
-    public double mean(){
+
+    public double mean()
+    {
         // sample mean of percolation threshold
         return 0;
     }
-    public double stddev(){
+
+    public double stddev()
+    {
         // sample standard deviation of percolation threshold
         return 0;
     }
 
-    public double confidenceLo(){
+    public double confidenceLo()
+    {
         // low  endpoint of 95% confidence interval
         return 0;
     }
 
-    public double confidenceHi(){
+    public double confidenceHi()
+    {
         // high endpoint of 95% confidence interval
         return 0;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args)
+    {
         // test client (described below)
         int n = 20;
         int trails = 1000;
@@ -40,8 +50,9 @@ public class PercolationStats {
 
         for (int i = 0; i < probs.length; i++)
         {
-            while(!p.percolates()){
-                p.open(r.nextInt(n-1) + 1, r.nextInt(n-1) + 1);
+            while (!p.percolates())
+            {
+                p.open(r.nextInt(n - 1) + 1, r.nextInt(n - 1) + 1);
             }
             probs[i] = p.numberOfOpenSites() / n * n;
             p.reset();
