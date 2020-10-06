@@ -19,6 +19,7 @@ public class Percolation
     private int Top;    // Top virtual node
     private int Bottom; // Bottom virtual node
     private int NumOfOpenSites = 0;
+
     private static final boolean BLOCK = false;
     private static final boolean OPEN = true;
 
@@ -31,13 +32,6 @@ public class Percolation
         uf = new WeightedQuickUnionUF(n * n + 2);
         Top = n * n;
         Bottom = n * n + 1;
-        for (int i = 0; i < n; i++)
-        {
-            // Connect first line to top node
-            uf.union(i, Top);
-            // Connect last line to bottom node
-            uf.union(n * n - 1 - i, Bottom);
-        }
 
         // Initialize n by n gird with all sites blocked
         // By convention, (1, 1) is the upper-left site
@@ -56,11 +50,13 @@ public class Percolation
     public void open(int row, int col)
     {
         int index = coor2index(row, col);
+
         if (!isOpen(row, col))
         {
             grid[row][col] = OPEN;
             NumOfOpenSites++;
-            // Need to improve if structure
+
+            // Connect the opened site to its neighbors.
             if (row == 1)
             {
                 uf.union(index, index + Num);
@@ -127,6 +123,16 @@ public class Percolation
                 site = BLOCK;
             }
         }
+    }
+
+    private int mapRow(int row)
+    {
+        return row - 1;
+    }
+
+    private int mapCol(int col)
+    {
+        return col - 1;
     }
 
     public WeightedQuickUnionUF getUf()
