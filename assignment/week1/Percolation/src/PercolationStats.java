@@ -5,51 +5,26 @@ import java.util.Random;
 
 public class PercolationStats
 {
-    private static int[] probs;
+    private double[] probs;
+    private int trials;
 
-    public PercolationStats(int n, int trials)
+    private double mean;
+    private double stddev;
+    private double confidenceLo;
+    private double confidenceHi;
+
+
+    public PercolationStats(int N, int trials)
     {
         // perform trials independent experiments on an n-by-n grid
-        if (n <= 0 || trials <= 0)
+        if (N <= 0 || trials <= 0)
             throw new IllegalArgumentException("N or trials less than 0!");
 
-    }
-
-    public double mean()
-    {
-        // sample mean of percolation threshold
-        return 0;
-    }
-
-    public double stddev()
-    {
-        // sample standard deviation of percolation threshold
-        return 0;
-    }
-
-    public double confidenceLo()
-    {
-        // low  endpoint of 95% confidence interval
-        return 0;
-    }
-
-    public double confidenceHi()
-    {
-        // high endpoint of 95% confidence interval
-        return 0;
-    }
-
-    public static void main(String[] args)
-    {
-        // test client (described below)
-        int N = 20;
-        int trails = 10;
-        //PercolationStats pstats = new PercolationStats(N, trails);
-        double[] probs = new double[trails];
-
+        probs = new double[trials];
+        this.trials = trials;
         Random r = new Random();
 
-        for (int i = 0; i < trails; i++)
+        for (int i = 0; i < trials; i++)
         {
             Percolation p = new Percolation(N);
             while (!p.percolates())
@@ -58,10 +33,47 @@ public class PercolationStats
             }
             probs[i] = p.numberOfOpenSites() / (double) (N * N);
         }
-        System.out.println(StdStats.mean(probs));
 
+        mean = StdStats.mean(probs);
+        stddev = StdStats.stddev(probs);
+        confidenceLo = mean - (1.96 * stddev) / Math.sqrt(N);
+        confidenceHi = mean + (1.96 * stddev) / Math.sqrt(N);
+        System.out.println("mean                    = " + mean);
+        System.out.println("stddev                  = " + stddev);
+        System.out.println("95% confidence interval = " + "[" + confidenceLo + "," + confidenceHi + "]");
 
     }
 
+    public double mean()
+    {
+        // sample mean of percolation threshold
+        return mean;
+    }
 
+    public double stddev()
+    {
+        // sample standard deviation of percolation threshold
+        return stddev;
+    }
+
+    public double confidenceLo()
+    {
+        // low endpoint of 95% confidence interval
+        return confidenceLo;
+    }
+
+    public double confidenceHi()
+    {
+        // high endpoint of 95% confidence interval
+        return confidenceHi;
+    }
+
+    public static void main(String[] args)
+    {
+        // test client (described below)
+        int N = 200;
+        int trials = 100;
+        PercolationStats pstats = new PercolationStats(N, trials);
+
+    }
 }
