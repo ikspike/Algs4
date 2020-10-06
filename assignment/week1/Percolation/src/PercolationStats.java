@@ -41,20 +41,20 @@ public class PercolationStats
     public static void main(String[] args)
     {
         // test client (described below)
-        int n = 20;
-        int trails = 1000;
-        PercolationStats pstats = new PercolationStats(n, trails);
+        int N = 20;
+        int trails = 1;
+        PercolationStats pstats = new PercolationStats(N, trails);
         probs = new int[trails];
-        Percolation p = new Percolation(n);
+        Percolation p = new Percolation(N);
         Random r = new Random();
 
         for (int i = 0; i < probs.length; i++)
         {
             while (!p.percolates())
             {
-                p.open(r.nextInt(n - 1) + 1, r.nextInt(n - 1) + 1);
+                p.open(r.nextInt(N - 1) + 1, r.nextInt(N - 1) + 1);
             }
-            probs[i] = p.numberOfOpenSites() / n * n;
+            probs[i] = p.numberOfOpenSites() / N * N;
             p.reset();
         }
         System.out.println(StdStats.mean(probs));
