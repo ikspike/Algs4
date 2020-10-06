@@ -9,13 +9,14 @@
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Percolation
 {
     private WeightedQuickUnionUF uf;
     private boolean[][] grid;
-    private int Num;    // Edge nodes number
+    private int SideLength;    // Side length of the square
     private int Top;    // Top virtual node
     private int Bottom; // Bottom virtual node
     private int NumOfOpenSites = 0;
@@ -27,7 +28,7 @@ public class Percolation
 
     public Percolation(int n)
     {
-        Num = n;
+        SideLength = n;
         // Initialize WQU with one top and one bottom site.
         uf = new WeightedQuickUnionUF(n * n + 2);
         Top = n * n;
@@ -35,13 +36,10 @@ public class Percolation
 
         // Initialize n by n gird with all sites blocked
         // By convention, (1, 1) is the upper-left site
-        grid = new boolean[n + 1][n + 1];
-        for (boolean[] sites : grid)
+        grid = new boolean[n][n];
+        for (boolean[] row : grid)
         {
-            for (boolean site : sites)
-            {
-                site = BLOCK;
-            }
+            Arrays.fill(row, BLOCK);
         }
 
     }
@@ -53,40 +51,47 @@ public class Percolation
 
         if (!isOpen(row, col))
         {
-            grid[row][col] = OPEN;
+            grid[row - 1][col - 1] = OPEN;
             NumOfOpenSites++;
 
             // Connect the opened site to its neighbors.
-            if (row == 1)
+            if (row == 1)   // First row
             {
-                uf.union(index, index + Num);
+                uf.union(index, index + SideLength);
+                uf.union(index, Top);
             }
-            if (row == Num)
+            if (row == SideLength)  // Last row
             {
-                uf.union(index, index - Num);
+                uf.union(index, index - SideLength);
+                uf.union(index, Bottom);
             }
-            if (col == 1)
-            {
-                uf.union(index, index + 1);
-            }
-            if (col == Num)
-            {
-                uf.union(index, index - 1);
-            }
-            if (row != 1 && row != Num && col != 1 && col != Num)
-            {
-                uf.union(index, index + Num);
-                uf.union(index, index - Num);
-                uf.union(index, index + 1);
-                uf.union(index, index - 1);
-            }
+
+            connectIfOpen(index, row + 1, col);
+            connectIfOpen(index, row - 1, col);
+            connectIfOpen(index, row, col + 1);
+            connectIfOpen(index, row, col - 1);
         }
     }
 
     public boolean isOpen(int row, int col)
     {
         // is site (row, col) open?
-        return grid[row][col];
+        return grid[row - 1][col - 1];
+    }
+
+    private void connectIfOpen(int current_index, int row, int col)
+    {
+        try
+        {
+            if (isOpen(row, col))
+            {
+                int neighbor_index = coor2index(row, col);
+                uf.union(current_index, neighbor_index);
+            }
+        } catch (IndexOutOfBoundsException e)
+        {
+            // Don't connect field with field outside grid
+        }
     }
 
 
@@ -111,7 +116,7 @@ public class Percolation
 
     private int coor2index(int row, int col)
     {
-        return Num * (row - 1) + (col - 1);
+        return SideLength * (row - 1) + (col - 1);
     }
 
     public void reset()
@@ -158,5 +163,7 @@ public class Percolation
         }
         System.out.println("numberOfOpenSites: " + p.numberOfOpenSites());
         System.out.println("Percolate? " + p.percolates());
+        double rate = p.numberOfOpenSites() * 1.0 / (N * N);
+        System.out.println("Rate = " + rate);
     }
 }
