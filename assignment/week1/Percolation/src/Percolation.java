@@ -118,33 +118,7 @@ public class Percolation
     {
         return SideLength * (row - 1) + (col - 1);
     }
-
-    public void reset()
-    {
-        for (boolean[] sites : grid)
-        {
-            for (boolean site : sites)
-            {
-                site = BLOCK;
-            }
-        }
-    }
-
-    private int mapRow(int row)
-    {
-        return row - 1;
-    }
-
-    private int mapCol(int col)
-    {
-        return col - 1;
-    }
-
-    public WeightedQuickUnionUF getUf()
-    {
-        return uf;
-    }
-
+    
     public static void main(String[] args)
     {
         // test client (optional)
