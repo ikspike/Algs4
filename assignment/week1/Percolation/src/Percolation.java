@@ -7,41 +7,36 @@
 // Debug: Vacancy probability is lower than expected
 
 import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-
-import java.util.Arrays;
-import java.util.Random;
 
 public class Percolation
 {
-    private WeightedQuickUnionUF uf;
-    private boolean[][] grid;
-    private int SideLength;    // Side length of the square
-    private int Top;    // Top virtual node
-    private int Bottom; // Bottom virtual node
-    private int NumOfOpenSites = 0;
-
     private static final boolean BLOCK = false;
     private static final boolean OPEN = true;
+    //private static final boolean SHOW_GRAPH = true;
 
-    private static final boolean show_graph = true;
+    private final WeightedQuickUnionUF uf;
+    private final boolean[][] grid;
+    private final int sideLength;    // Side length of the square
+    private final int top;    // top virtual node
+    private final int bottom; // bottom virtual node
+    private int numOfOpenSites = 0;
 
     public Percolation(int n)
     {
-        SideLength = n;
+        sideLength = n;
         // Initialize WQU with one top and one bottom site.
         uf = new WeightedQuickUnionUF(n * n + 2);
-        Top = n * n;
-        Bottom = n * n + 1;
+        top = n * n;
+        bottom = n * n + 1;
 
         // Initialize n by n gird with all sites blocked
         // By convention, (1, 1) is the upper-left site
         grid = new boolean[n][n];
-        for (boolean[] row : grid)
-        {
-            Arrays.fill(row, BLOCK);
-        }
-
+        for (int row = 0; row < n; row++)
+            for (int col = 0; col < n; col++)
+                grid[row][col] = BLOCK;
     }
 
 
@@ -52,18 +47,18 @@ public class Percolation
         if (!isOpen(row, col))
         {
             grid[row - 1][col - 1] = OPEN;
-            NumOfOpenSites++;
+            numOfOpenSites++;
 
             // Connect the opened site to its neighbors.
             if (row == 1)   // First row
             {
-                uf.union(index, index + SideLength);
-                uf.union(index, Top);
+                uf.union(index, index + sideLength);
+                uf.union(index, top);
             }
-            if (row == SideLength)  // Last row
+            if (row == sideLength)  // Last row
             {
-                uf.union(index, index - SideLength);
-                uf.union(index, Bottom);
+                uf.union(index, index - sideLength);
+                uf.union(index, bottom);
             }
 
             connectIfOpen(index, row + 1, col);
@@ -79,14 +74,14 @@ public class Percolation
         return grid[row - 1][col - 1];
     }
 
-    private void connectIfOpen(int current_index, int row, int col)
+    private void connectIfOpen(int currentIndex, int row, int col)
     {
         try
         {
             if (isOpen(row, col))
             {
-                int neighbor_index = coor2index(row, col);
-                uf.union(current_index, neighbor_index);
+                int neighborIndex = coor2index(row, col);
+                uf.union(currentIndex, neighborIndex);
             }
         } catch (IndexOutOfBoundsException e)
         {
@@ -98,46 +93,46 @@ public class Percolation
     public boolean isFull(int row, int col)
     {
         int index = coor2index(row, col);
-        return uf.connected(index, Top);
+        return uf.find(top) == uf.find(bottom);
     }
 
     public int numberOfOpenSites()
     {
         // number of open sites
-        return NumOfOpenSites;
+        return numOfOpenSites;
 
     }
 
     public boolean percolates()
     {
         // does the system percolate?
-        return uf.connected(Top, Bottom);
+        return uf.find(top) == uf.find(bottom);
     }
 
     private int coor2index(int row, int col)
     {
-        return SideLength * (row - 1) + (col - 1);
+        return sideLength * (row - 1) + (col - 1);
     }
-    
+
     public static void main(String[] args)
     {
         // test client (optional)
-        int N;
+        int inputN;
         if (args.length == 1)
-            N = Integer.parseInt(args[0]);
+            inputN = Integer.parseInt(args[0]);
         else
-            N = StdIn.readInt();
+            inputN = StdIn.readInt();
 
-        Percolation p = new Percolation(N);
+        Percolation p = new Percolation(inputN);
         System.out.println("Percolate? " + p.percolates());
-        Random r = new Random();
+
         while (!p.percolates())
         {
-            p.open(r.nextInt(N) + 1, r.nextInt(N) + 1);
+            p.open(StdRandom.uniform(inputN) + 1, StdRandom.uniform(inputN) + 1);
         }
         System.out.println("numberOfOpenSites: " + p.numberOfOpenSites());
         System.out.println("Percolate? " + p.percolates());
-        double rate = p.numberOfOpenSites() * 1.0 / (N * N);
+        double rate = p.numberOfOpenSites() * 1.0 / (inputN * inputN);
         System.out.println("Rate = " + rate);
     }
 }

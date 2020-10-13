@@ -3,13 +3,10 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats
 {
-    private double[] probs;
-    private int trials;
-
-    private double mean;
-    private double stddev;
-    private double confidenceLo;
-    private double confidenceHi;
+    private final double mean;
+    private final double stddev;
+    private final double confidenceLo;
+    private final double confidenceHi;
 
 
     public PercolationStats(int N, int trials)
@@ -18,8 +15,7 @@ public class PercolationStats
         if (N <= 0 || trials <= 0)
             throw new IllegalArgumentException("N or trials less than 0!");
 
-        probs = new double[trials];
-        this.trials = trials;
+        double[] probs = new double[trials];
 
         for (int i = 0; i < trials; i++)
         {
