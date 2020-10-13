@@ -65,6 +65,7 @@ public class Percolation
             connectIfOpen(index, row - 1, col);
             connectIfOpen(index, row, col + 1);
             connectIfOpen(index, row, col - 1);
+
         }
     }
 
@@ -128,7 +129,11 @@ public class Percolation
 
         while (!p.percolates())
         {
-            p.open(StdRandom.uniform(inputN) + 1, StdRandom.uniform(inputN) + 1);
+            int randomRow = StdRandom.uniform(inputN) + 1;
+            int randomCol = StdRandom.uniform(inputN) + 1;
+            p.open(randomRow, randomCol);
+            System.out.println("Is site " + randomRow + "," + randomCol + " open? " + p.isOpen(randomRow, randomCol));
+            System.out.println("Is site " + randomRow + "," + randomCol + " full? " + p.isFull(randomRow, randomCol));
         }
         System.out.println("numberOfOpenSites: " + p.numberOfOpenSites());
         System.out.println("Percolate? " + p.percolates());
