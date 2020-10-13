@@ -9,27 +9,27 @@ public class PercolationStats
     private final double confidenceHi;
 
 
-    public PercolationStats(int N, int trials)
+    public PercolationStats(int n, int trials)
     {
         // perform trials independent experiments on an n-by-n grid
-        if (N <= 0 || trials <= 0)
-            throw new IllegalArgumentException("N or trials less than 0!");
+        if (n <= 0 || trials <= 0)
+            throw new IllegalArgumentException("n or trials less than 0!");
 
         double[] probs = new double[trials];
 
         for (int i = 0; i < trials; i++)
         {
-            Percolation p = new Percolation(N);
+            Percolation p = new Percolation(n);
             while (!p.percolates())
             {
-                p.open(StdRandom.uniform(N) + 1, StdRandom.uniform(N) + 1);
+                p.open(StdRandom.uniform(n) + 1, StdRandom.uniform(n) + 1);
             }
-            probs[i] = p.numberOfOpenSites() / (double) (N * N);
+            probs[i] = p.numberOfOpenSites() / (double) (n * n);
         }
 
         mean = StdStats.mean(probs);
         stddev = StdStats.stddev(probs);
-        double confidenceFraction = (1.96 * stddev()) / Math.sqrt(N);
+        double confidenceFraction = (1.96 * stddev()) / Math.sqrt(n);
         confidenceLo = mean - confidenceFraction;
         confidenceHi = mean + confidenceFraction;
     }
@@ -68,9 +68,9 @@ public class PercolationStats
     public static void main(String[] args)
     {
         // test client (described below)
-        int N = 200;
+        int n = 200;
         int trials = 100;
-        PercolationStats pstats = new PercolationStats(N, trials);
+        PercolationStats pstats = new PercolationStats(n, trials);
         pstats.show();
 
     }

@@ -14,7 +14,7 @@ public class Percolation
 {
     private static final boolean BLOCK = false;
     private static final boolean OPEN = true;
-    //private static final boolean SHOW_GRAPH = true;
+    // private static final boolean SHOW_GRAPH = true;
 
     private final WeightedQuickUnionUF uf;
     private final boolean[][] grid;
@@ -93,7 +93,7 @@ public class Percolation
     public boolean isFull(int row, int col)
     {
         int index = coor2index(row, col);
-        return uf.find(top) == uf.find(bottom);
+        return uf.find(top) == uf.find(index);
     }
 
     public int numberOfOpenSites()
