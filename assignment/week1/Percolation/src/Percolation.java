@@ -42,6 +42,9 @@ public class Percolation
 
     public void open(int row, int col)
     {
+        if (row < 1 || col < 1)
+            throw new IllegalArgumentException("Error: Row number and column number must be greater than 1.");
+
         int index = coor2index(row, col);
 
         if (!isOpen(row, col))
@@ -134,6 +137,8 @@ public class Percolation
             p.open(randomRow, randomCol);
             System.out.println("Is site " + randomRow + "," + randomCol + " open? " + p.isOpen(randomRow, randomCol));
             System.out.println("Is site " + randomRow + "," + randomCol + " full? " + p.isFull(randomRow, randomCol));
+            if (p.isFull(randomRow, randomCol))
+                assert (p.isOpen(randomRow, randomCol));
         }
         System.out.println("numberOfOpenSites: " + p.numberOfOpenSites());
         System.out.println("Percolate? " + p.percolates());
