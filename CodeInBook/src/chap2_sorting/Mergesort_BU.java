@@ -1,9 +1,7 @@
-package sorting;
+package chap2_sorting;
 
 
-import edu.princeton.cs.algs4.StdOut;
-
-public class Mergesort extends SortingStem
+public class Mergesort_BU extends SortingStem
 {
     private static Comparable[] aux;
 
@@ -30,29 +28,21 @@ public class Mergesort extends SortingStem
 
     public static void sort(Comparable[] a)
     {
-        aux = new Comparable[a.length];
-        sort(a, 0, a.length - 1);
-    }
+        int N = a.length;
+        aux = new Comparable[N];
 
-    public static void sort(Comparable[] a, int lo, int hi)
-    {
-        if (hi <= lo)
-            return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid);
-        sort(a, mid + 1, hi);
-        merge(a, lo, mid, hi);
+        for (int sz = 1; sz < N; sz = sz + sz)
+            for (int lo = 0; lo < N - sz; lo += sz + sz)
+                merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
+
     }
 
     public static void main(String[] args)
     {
-        //String[] a = StdIn.readAllStrings();
+        // String[] a = StdIn.readAllStrings();
         Comparable[] a = {9, 8, 78, 6, 5, 4, 3, 2, 1};
-        StdOut.print("Input: ");
-        show(a);
         sort(a);
         assert isSorted(a);
-        StdOut.print("Sorted: ");
         show(a);
     }
 }

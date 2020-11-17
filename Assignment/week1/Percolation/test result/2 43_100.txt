@@ -1,0 +1,1567 @@
+See the Assessment Guide for information on how to interpret this report.
+
+Want to receive personalized feedback on this submission?
+You can pay to have a teaching assistant read and provide
+personalized feedback on your submission at https://mooc.codepost.io.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Spotbugs:     PASSED
+PMD:          PASSED
+Checkstyle:   FAILED (0 errors, 3 warnings)
+
+Correctness:  15/38 tests passed
+Memory:       4/8 tests passed
+Timing:       4/20 tests passed
+
+Aggregate score: 42.68%
+[Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+4.5K Oct 14 03:07 Percolation.java
+2.1K Oct 14 03:07 PercolationStats.java
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac Percolation.java
+*-----------------------------------------------------------
+
+% javac PercolationStats.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+Percolation:
+
+PercolationStats:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% spotbugs *.class
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] Percolation.java:9:8: Unused import statement for 'edu.princeton.cs.algs4.StdIn'. [UnusedImports]
+[WARN] Percolation.java:10:8: Unused import statement for 'edu.princeton.cs.algs4.StdRandom'. [UnusedImports]
+Checkstyle ends with 0 errors and 2 warnings.
+
+% custom checkstyle checks for Percolation.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for PercolationStats.java
+*-----------------------------------------------------------
+[WARN] PercolationStats.java:1: The number (0) of calls to 'Integer.parseInt()' must equal the number (2) of integer command-line arguments. [CommandLineArgument]
+Checkstyle ends with 0 errors and 1 warning.
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of Percolation
+*-----------------------------------------------------------
+Running 21 total tests.
+
+Tests 1 through 7 create a Percolation object using your code, then repeatedly
+open sites by calling open(). After each call to open(), it checks the return
+values of isOpen(), percolates(), numberOfOpenSites(), and isFull() in that order.
+Tests 12 through 15 create a Percolation object using your code, then repeatedly
+call the methods open(), isOpen(), isFull(), percolates(), and, numberOfOpenSites()
+in random order with probabilities p = (p1, p2, p3, p4, p5). The tests stop
+immediately after the system percolates.
+
+Tests 18 through 21 test backwash.
+
+Except as noted, a site is opened at most once.
+
+Test 1: open predetermined list of sites using file inputs
+  * filename = input6.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 6
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test1(TestPercolation.java:658)
+    TestPercolation.main(TestPercolation.java:963)
+
+  * filename = input8.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test1(TestPercolation.java:659)
+    TestPercolation.main(TestPercolation.java:963)
+
+  * filename = input8-no.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test1(TestPercolation.java:660)
+    TestPercolation.main(TestPercolation.java:963)
+
+  * filename = input10-no.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test1(TestPercolation.java:661)
+    TestPercolation.main(TestPercolation.java:963)
+
+  * filename = greeting57.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 57
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test1(TestPercolation.java:662)
+    TestPercolation.main(TestPercolation.java:963)
+
+  * filename = heart25.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 25
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test1(TestPercolation.java:663)
+    TestPercolation.main(TestPercolation.java:963)
+
+==> FAILED
+
+Test 2: open random sites until the system percolates
+  * n = 3
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:672)
+    TestPercolation.main(TestPercolation.java:966)
+
+  * n = 5
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:673)
+    TestPercolation.main(TestPercolation.java:966)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:674)
+    TestPercolation.main(TestPercolation.java:966)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:675)
+    TestPercolation.main(TestPercolation.java:966)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:676)
+    TestPercolation.main(TestPercolation.java:966)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:677)
+    TestPercolation.main(TestPercolation.java:966)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:678)
+    TestPercolation.main(TestPercolation.java:966)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:269)
+    TestPercolation.test2(TestPercolation.java:679)
+    TestPercolation.main(TestPercolation.java:966)
+
+==> FAILED
+
+Test 3: open predetermined sites for n = 1 and n = 2 (corner case test)
+  * filename = input1.txt
+
+    java.lang.IllegalArgumentException: index -1 is not between 0 and 2
+
+    edu.princeton.cs.algs4.WeightedQuickUnionUF.validate(WeightedQuickUnionUF.java:114)
+    edu.princeton.cs.algs4.WeightedQuickUnionUF.findNoCount(WeightedQuickUnionUF.java:121)
+    edu.princeton.cs.algs4.WeightedQuickUnionUF.union(WeightedQuickUnionUF.java:149)
+    Percolation.open(Percolation.java:60)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test3(TestPercolation.java:688)
+    TestPercolation.main(TestPercolation.java:969)
+
+  * filename = input1-no.txt
+  * filename = input2.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 2
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test3(TestPercolation.java:690)
+    TestPercolation.main(TestPercolation.java:969)
+
+  * filename = input2-no.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 2
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test3(TestPercolation.java:691)
+    TestPercolation.main(TestPercolation.java:969)
+
+==> FAILED
+
+Test 4: check predetermined sites with long percolating path
+  * filename = snake13.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 13 out of bounds for length 13
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test4(TestPercolation.java:700)
+    TestPercolation.main(TestPercolation.java:972)
+
+  * filename = snake101.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 101
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test4(TestPercolation.java:701)
+    TestPercolation.main(TestPercolation.java:972)
+
+==> FAILED
+
+Test 5: open every site
+  * filename = input5.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test5(TestPercolation.java:708)
+    TestPercolation.main(TestPercolation.java:975)
+
+==> FAILED
+
+Test 6: open random sites until the system percolates,
+        allowing open() to be called on a site more than once
+  * n = 3
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:718)
+    TestPercolation.main(TestPercolation.java:978)
+
+  * n = 5
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:719)
+    TestPercolation.main(TestPercolation.java:978)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:720)
+    TestPercolation.main(TestPercolation.java:978)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:721)
+    TestPercolation.main(TestPercolation.java:978)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:722)
+    TestPercolation.main(TestPercolation.java:978)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:723)
+    TestPercolation.main(TestPercolation.java:978)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:724)
+    TestPercolation.main(TestPercolation.java:978)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolationWithDuplicateSites(TestPercolation.java:294)
+    TestPercolation.test6(TestPercolation.java:725)
+    TestPercolation.main(TestPercolation.java:978)
+
+==> FAILED
+
+Test 7: open random sites with large n
+  * n = 250
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 250
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsWithLargeN(TestPercolation.java:325)
+    TestPercolation.test7(TestPercolation.java:735)
+    TestPercolation.main(TestPercolation.java:981)
+
+  * n = 500
+  * n = 1000
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 1000
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsWithLargeN(TestPercolation.java:325)
+    TestPercolation.test7(TestPercolation.java:737)
+    TestPercolation.main(TestPercolation.java:981)
+
+  * n = 2000
+==> FAILED
+
+Test 8: call methods with invalid arguments
+  * n = 10, (row, col) = (-1, 5)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (11, 5)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (0, 5)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (5, -1)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+    - isFull() fails to throw an exception
+    - isFull() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (5, 11)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+    - isFull() fails to throw an exception
+    - isFull() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (5, 0)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+    - isFull() fails to throw an exception
+    - isFull() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (-2147483648, -2147483648)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (2147483647, 2147483647)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+==> FAILED
+
+Test 9: call constructor with invalid argument
+  * n = -10
+    - the constructor throws the wrong exception
+    - the constructor throws a java.lang.NegativeArraySizeException
+    - the constructor should throw a java.lang.IllegalArgumentException
+
+  * n = -1
+    - the constructor throws the wrong exception
+    - the constructor throws a java.lang.NegativeArraySizeException
+    - the constructor should throw a java.lang.IllegalArgumentException
+
+  * n = 0
+    - the constructor fails to throw an exception
+    - the constructor should throw a java.lang.IllegalArgumentException
+
+==> FAILED
+
+Test 10: create multiple Percolation objects at the same time
+        (to make sure you didn't store data in static variables)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkTwoPercolationObjects(TestPercolation.java:459)
+    TestPercolation.test10(TestPercolation.java:773)
+    TestPercolation.main(TestPercolation.java:990)
+
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkTwoPercolationObjects(TestPercolation.java:459)
+    TestPercolation.test10(TestPercolation.java:774)
+    TestPercolation.main(TestPercolation.java:990)
+
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkTwoPercolationObjects(TestPercolation.java:459)
+    TestPercolation.test10(TestPercolation.java:775)
+    TestPercolation.main(TestPercolation.java:990)
+
+==> FAILED
+
+Test 11: open predetermined list of sites using file inputs,
+         but permute the order in which methods are called
+  * filename = input8.txt;  order =     isFull(),     isOpen(), percolates()
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:235)
+    TestPercolation.test11(TestPercolation.java:785)
+    TestPercolation.main(TestPercolation.java:993)
+
+  * filename = input8.txt;  order =     isFull(), percolates(),     isOpen()
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:235)
+    TestPercolation.test11(TestPercolation.java:786)
+    TestPercolation.main(TestPercolation.java:993)
+
+  * filename = input8.txt;  order =     isOpen(),     isFull(), percolates()
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:235)
+    TestPercolation.test11(TestPercolation.java:787)
+    TestPercolation.main(TestPercolation.java:993)
+
+  * filename = input8.txt;  order =     isOpen(), percolates(),     isFull()
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:235)
+    TestPercolation.test11(TestPercolation.java:788)
+    TestPercolation.main(TestPercolation.java:993)
+
+  * filename = input8.txt;  order = percolates(),     isOpen(),     isFull()
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:235)
+    TestPercolation.test11(TestPercolation.java:789)
+    TestPercolation.main(TestPercolation.java:993)
+
+  * filename = input8.txt;  order = percolates(),     isFull(),     isOpen()
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:235)
+    TestPercolation.test11(TestPercolation.java:790)
+    TestPercolation.main(TestPercolation.java:993)
+
+==> FAILED
+
+Test 12: call open(), isOpen(), and numberOfOpenSites()
+         in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test12(TestPercolation.java:799)
+    TestPercolation.main(TestPercolation.java:996)
+
+    - sequence of operations was:
+         percolation.isOpen(row, col) for each row and col
+         percolation.isOpen(row, col) for each row and col
+
+  * n = 5, trials = 20, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test12(TestPercolation.java:800)
+    TestPercolation.main(TestPercolation.java:996)
+
+    - sequence of operations was:
+
+  * n = 7, trials = 10, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test12(TestPercolation.java:801)
+    TestPercolation.main(TestPercolation.java:996)
+
+    - sequence of operations was:
+         percolation.open(6, 5)
+         percolation.numberOfOpenSites()
+
+  * n = 10, trials = 5, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test12(TestPercolation.java:802)
+    TestPercolation.main(TestPercolation.java:996)
+
+    - sequence of operations was:
+         percolation.open(4, 7)
+
+  * n = 20, trials = 2, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test12(TestPercolation.java:803)
+    TestPercolation.main(TestPercolation.java:996)
+
+
+  * n = 50, trials = 1, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test12(TestPercolation.java:804)
+    TestPercolation.main(TestPercolation.java:996)
+
+
+==> FAILED
+
+Test 13: call open() and percolates() in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test13(TestPercolation.java:811)
+    TestPercolation.main(TestPercolation.java:999)
+
+    - sequence of operations was:
+         percolation.percolates()
+
+  * n = 5, trials = 20, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test13(TestPercolation.java:812)
+    TestPercolation.main(TestPercolation.java:999)
+
+    - sequence of operations was:
+
+  * n = 7, trials = 10, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 7 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test13(TestPercolation.java:813)
+    TestPercolation.main(TestPercolation.java:999)
+
+    - sequence of operations was:
+         percolation.percolates()
+         percolation.percolates()
+         percolation.percolates()
+
+  * n = 10, trials = 5, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test13(TestPercolation.java:814)
+    TestPercolation.main(TestPercolation.java:999)
+
+    - sequence of operations was:
+
+  * n = 20, trials = 2, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test13(TestPercolation.java:815)
+    TestPercolation.main(TestPercolation.java:999)
+
+    - sequence of operations was:
+         percolation.percolates()
+         percolation.percolates()
+         percolation.percolates()
+         percolation.percolates()
+         percolation.percolates()
+         percolation.percolates()
+         percolation.open(7, 6)
+         percolation.open(11, 17)
+         percolation.open(16, 10)
+
+  * n = 50, trials = 1, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test13(TestPercolation.java:816)
+    TestPercolation.main(TestPercolation.java:999)
+
+    - sequence of operations was:
+         percolation.percolates()
+         percolation.percolates()
+         percolation.open(23, 18)
+         percolation.percolates()
+         percolation.open(13, 34)
+         percolation.percolates()
+         percolation.percolates()
+         percolation.open(28, 49)
+         percolation.percolates()
+         percolation.percolates()
+         percolation.percolates()
+         percolation.open(32, 9)
+         percolation.percolates()
+
+==> FAILED
+
+Test 14: call open() and isFull() in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test14(TestPercolation.java:823)
+    TestPercolation.main(TestPercolation.java:1002)
+
+    - sequence of operations was:
+
+  * n = 5, trials = 20, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test14(TestPercolation.java:824)
+    TestPercolation.main(TestPercolation.java:1002)
+
+    - sequence of operations was:
+
+  * n = 7, trials = 10, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test14(TestPercolation.java:825)
+    TestPercolation.main(TestPercolation.java:1002)
+
+    - sequence of operations was:
+         percolation.isFull(row, col) for each row and col
+         percolation.isFull(row, col) for each row and col
+         percolation.open(3, 2)
+         percolation.open(2, 4)
+         percolation.open(6, 3)
+         percolation.open(4, 3)
+
+  * n = 10, trials = 5, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test14(TestPercolation.java:826)
+    TestPercolation.main(TestPercolation.java:1002)
+
+    - sequence of operations was:
+         percolation.open(7, 4)
+         percolation.open(9, 3)
+
+  * n = 20, trials = 2, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test14(TestPercolation.java:827)
+    TestPercolation.main(TestPercolation.java:1002)
+
+    - sequence of operations was:
+         percolation.isFull(row, col) for each row and col
+         percolation.open(8, 18)
+         percolation.isFull(row, col) for each row and col
+         percolation.open(18, 19)
+
+  * n = 50, trials = 1, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test14(TestPercolation.java:828)
+    TestPercolation.main(TestPercolation.java:1002)
+
+    - sequence of operations was:
+         percolation.isFull(row, col) for each row and col
+         percolation.isFull(row, col) for each row and col
+         percolation.isFull(row, col) for each row and col
+         percolation.open(23, 45)
+         percolation.open(29, 17)
+         percolation.open(46, 27)
+
+==> FAILED
+
+Test 15: call all methods in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test15(TestPercolation.java:835)
+    TestPercolation.main(TestPercolation.java:1005)
+
+    - sequence of operations was:
+
+  * n = 5, trials = 20, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test15(TestPercolation.java:836)
+    TestPercolation.main(TestPercolation.java:1005)
+
+    - sequence of operations was:
+
+  * n = 7, trials = 10, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 7 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test15(TestPercolation.java:837)
+    TestPercolation.main(TestPercolation.java:1005)
+
+
+  * n = 10, trials = 5, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test15(TestPercolation.java:838)
+    TestPercolation.main(TestPercolation.java:1005)
+
+    - sequence of operations was:
+         percolation.isFull(row, col) for each row and col
+
+  * n = 20, trials = 2, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test15(TestPercolation.java:839)
+    TestPercolation.main(TestPercolation.java:1005)
+
+    - sequence of operations was:
+         percolation.numberOfOpenSites()
+         percolation.open(17, 12)
+         percolation.isOpen(row, col) for each row and col
+         percolation.percolates()
+         percolation.isOpen(row, col) for each row and col
+         percolation.open(15, 16)
+         percolation.isOpen(row, col) for each row and col
+         percolation.isOpen(row, col) for each row and col
+         percolation.percolates()
+
+  * n = 50, trials = 1, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsUntilPercolation(TestPercolation.java:504)
+    TestPercolation.test15(TestPercolation.java:840)
+    TestPercolation.main(TestPercolation.java:1005)
+
+
+==> FAILED
+
+Test 16: call all methods in random order until almost all sites are open
+         (with inputs not prone to backwash)
+  * n = 3
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test16(TestPercolation.java:848)
+    TestPercolation.main(TestPercolation.java:1008)
+
+  * n = 5
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test16(TestPercolation.java:849)
+    TestPercolation.main(TestPercolation.java:1008)
+
+  * n = 7
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test16(TestPercolation.java:850)
+    TestPercolation.main(TestPercolation.java:1008)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test16(TestPercolation.java:851)
+    TestPercolation.main(TestPercolation.java:1008)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test16(TestPercolation.java:852)
+    TestPercolation.main(TestPercolation.java:1008)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test16(TestPercolation.java:853)
+    TestPercolation.main(TestPercolation.java:1008)
+
+==> FAILED
+
+Test 17: substitute WeightedQuickUnionUF data type that sets root nondeterministically;
+         call all methods in random order until almost all sites are open
+         (with inputs not prone to backwash)
+  * n = 3
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test17(TestPercolation.java:864)
+    TestPercolation.main(TestPercolation.java:1011)
+
+  * n = 5
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test17(TestPercolation.java:865)
+    TestPercolation.main(TestPercolation.java:1011)
+
+  * n = 7
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test17(TestPercolation.java:866)
+    TestPercolation.main(TestPercolation.java:1011)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test17(TestPercolation.java:867)
+    TestPercolation.main(TestPercolation.java:1011)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test17(TestPercolation.java:868)
+    TestPercolation.main(TestPercolation.java:1011)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCallsNoBackwash(TestPercolation.java:586)
+    TestPercolation.test17(TestPercolation.java:869)
+    TestPercolation.main(TestPercolation.java:1011)
+
+==> FAILED
+
+Test 18: check for backwash with predetermined sites
+  * filename = input20.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test18(TestPercolation.java:879)
+    TestPercolation.main(TestPercolation.java:1014)
+
+  * filename = input10.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test18(TestPercolation.java:880)
+    TestPercolation.main(TestPercolation.java:1014)
+
+  * filename = input50.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test18(TestPercolation.java:881)
+    TestPercolation.main(TestPercolation.java:1014)
+
+  * filename = jerry47.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 47
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test18(TestPercolation.java:882)
+    TestPercolation.main(TestPercolation.java:1014)
+
+  * filename = sedgewick60.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 60
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test18(TestPercolation.java:883)
+    TestPercolation.main(TestPercolation.java:1014)
+
+  * filename = wayne98.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 98
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test18(TestPercolation.java:884)
+    TestPercolation.main(TestPercolation.java:1014)
+
+==> FAILED
+
+Test 19: check for backwash with predetermined sites that have
+         multiple percolating paths
+  * filename = input3.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test19(TestPercolation.java:894)
+    TestPercolation.main(TestPercolation.java:1017)
+
+  * filename = input4.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test19(TestPercolation.java:895)
+    TestPercolation.main(TestPercolation.java:1017)
+
+  * filename = input7.txt
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test19(TestPercolation.java:896)
+    TestPercolation.main(TestPercolation.java:1017)
+
+==> FAILED
+
+Test 20: call all methods in random order until all sites are open
+         (these inputs are prone to backwash)
+  * n = 3
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test20(TestPercolation.java:906)
+    TestPercolation.main(TestPercolation.java:1020)
+
+  * n = 5
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:66)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test20(TestPercolation.java:907)
+    TestPercolation.main(TestPercolation.java:1020)
+
+  * n = 7
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test20(TestPercolation.java:908)
+    TestPercolation.main(TestPercolation.java:1020)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test20(TestPercolation.java:909)
+    TestPercolation.main(TestPercolation.java:1020)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test20(TestPercolation.java:910)
+    TestPercolation.main(TestPercolation.java:1020)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test20(TestPercolation.java:911)
+    TestPercolation.main(TestPercolation.java:1020)
+
+==> FAILED
+
+Test 21: substitute WeightedQuickUnionUF data type that sets root nondeterministically;
+         call all methods in random order until all sites are open
+         (these inputs are prone to backwash)
+  * n = 3
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test21(TestPercolation.java:922)
+    TestPercolation.main(TestPercolation.java:1023)
+
+  * n = 5
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:67)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test21(TestPercolation.java:923)
+    TestPercolation.main(TestPercolation.java:1023)
+
+  * n = 7
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 7 out of bounds for length 7
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test21(TestPercolation.java:924)
+    TestPercolation.main(TestPercolation.java:1023)
+
+  * n = 10
+
+    java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 10
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:65)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test21(TestPercolation.java:925)
+    TestPercolation.main(TestPercolation.java:1023)
+
+  * n = 20
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 20 out of bounds for length 20
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test21(TestPercolation.java:926)
+    TestPercolation.main(TestPercolation.java:1023)
+
+  * n = 50
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 50 out of bounds for length 50
+
+    Percolation.isOpen(Percolation.java:75)
+    Percolation.connectIfOpen(Percolation.java:82)
+    Percolation.open(Percolation.java:64)
+    TestPercolation.checkRandomCalls(TestPercolation.java:630)
+    TestPercolation.test21(TestPercolation.java:927)
+    TestPercolation.main(TestPercolation.java:1023)
+
+==> FAILED
+
+
+Total: 0/21 tests passed!
+
+
+================================================================
+********************************************************************************
+*  TESTING CORRECTNESS (substituting reference Percolation)
+********************************************************************************
+
+Testing correctness of PercolationStats
+*-----------------------------------------------------------
+Running 17 total tests.
+
+Test 1: check formatting of output of main()
+  % java-algs4 PercolationStats 20 10
+  mean                    = 0.5920555
+  stddev                  = 0.009236606177967571
+  95% confidence interval = [0.5907753716947363,0.5933356283052637]
+
+  % java-algs4 PercolationStats 200 100
+  mean                    = 0.5926845
+  stddev                  = 0.009296847502505808
+  95% confidence interval = [0.5913960226731149,0.593972977326885]
+
+==> passed
+
+Test 2: check that methods in PercolationStats do not print to standard output
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 3: check that mean() returns value in expected range
+  * n =   2, trials = 10000
+  * n =   5, trials = 10000
+  * n =  10, trials = 10000
+  * n =  25, trials = 10000
+==> passed
+
+Test 4: check that stddev() returns value in expected range
+  * n =   2, trials = 10000
+  * n =   5, trials = 10000
+  * n =  10, trials = 10000
+  * n =  25, trials = 10000
+==> passed
+
+Test 5: check that PercolationStats constructor creates
+        trials Percolation objects, each of size n-by-n
+  * n =  15, trials =  15
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 6: check that PercolationStats.main() creates
+        trials Percolation objects, each of size n-by-n
+  * n =  15, trials =  15
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 15
+
+  * n =  20, trials =  10
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 10
+
+  * n =  50, trials =  20
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 20
+
+  * n = 100, trials =  50
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 50
+
+  * n =  64, trials = 150
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 150
+
+==> FAILED
+
+Test 7: check that PercolationStats calls open() until system percolates
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 8: check that PercolationStats does not call open() after system percolates
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 9: check that mean() is consistent with the number of intercepted calls to open()
+        on blocked sites
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 10: check that stddev() is consistent with the number of intercepted calls to open()
+         on blocked sites
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 11: check that confidenceLo() and confidenceHigh() are consistent with mean() and stddev()
+  * n =  20, trials =  10
+    - PercolationStats confidence low  = 0.5625931157103091
+    - PercolationStats confidence high = 0.5874068842896908
+    - PercolationStats mean            = 0.575
+    - PercolationStats stddev          = 0.028308812919105048
+    - T                                = 10
+    - student T                     
+
+...
+
+WARNING: the grading output was truncated due to excessive length.
+Typically, this is because you have a method that has an unanticipated side effect
+(such as printing to standard output or throwing an exception). A large amount of output
+can also arise from failing many tests.
+
+October 14, 2020 11:04 AM CST

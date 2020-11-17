@@ -1,7 +1,5 @@
-package sorting;
+package chap2_sorting;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class SortingStem

@@ -1,7 +1,5 @@
-package searching;
+package chap1_searching;
 
-
-import org.w3c.dom.Node;
 
 public class BST<Key extends Comparable<Key>, Value>
 {

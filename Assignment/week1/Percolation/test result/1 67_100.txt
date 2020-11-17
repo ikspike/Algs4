@@ -1,0 +1,1363 @@
+October 13, 2020 8:11 PM CSTSubmitted at: Oct 13, 8:11 PM CST
+67/100Score: 67 of 100
+
+See the Assessment Guide for information on how to interpret this report.
+
+Want to receive personalized feedback on this submission?
+You can pay to have a teaching assistant read and provide
+personalized feedback on your submission at https://mooc.codepost.io.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Spotbugs:     PASSED
+PMD:          PASSED
+Checkstyle:   FAILED (0 errors, 1 warning)
+
+Correctness:  17/38 tests passed
+Memory:       8/8 tests passed
+Timing:       20/20 tests passed
+
+Aggregate score: 66.84%
+[Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+4.0K Oct 13 12:11 Percolation.java
+2.1K Oct 13 12:11 PercolationStats.java
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac Percolation.java
+*-----------------------------------------------------------
+
+% javac PercolationStats.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+Percolation:
+
+PercolationStats:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% spotbugs *.class
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for Percolation.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for PercolationStats.java
+*-----------------------------------------------------------
+[WARN] PercolationStats.java:1: The number (0) of calls to 'Integer.parseInt()' must equal the number (2) of integer command-line arguments. [CommandLineArgument]
+Checkstyle ends with 0 errors and 1 warning.
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of Percolation
+*-----------------------------------------------------------
+Running 21 total tests.
+
+Tests 1 through 7 create a Percolation object using your code, then repeatedly
+open sites by calling open(). After each call to open(), it checks the return
+values of isOpen(), percolates(), numberOfOpenSites(), and isFull() in that order.
+Tests 12 through 15 create a Percolation object using your code, then repeatedly
+call the methods open(), isOpen(), isFull(), percolates(), and, numberOfOpenSites()
+in random order with probabilities p = (p1, p2, p3, p4, p5). The tests stop
+immediately after the system percolates.
+
+Tests 18 through 21 test backwash.
+
+Except as noted, a site is opened at most once.
+
+Test 1: open predetermined list of sites using file inputs
+  * filename = input6.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 6) = true
+    - student isOpen(2, 6) = false
+    - by definition, a full site is open
+  * filename = input8.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 3) = true
+    - student isOpen(2, 3) = false
+    - by definition, a full site is open
+  * filename = input8-no.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 6) = true
+    - student isOpen(2, 6) = false
+    - by definition, a full site is open
+  * filename = input10-no.txt
+    - isFull() and isOpen() are inconsistent after 5 sites opened
+    - student isFull(2, 4) = true
+    - student isOpen(2, 4) = false
+    - by definition, a full site is open
+  * filename = greeting57.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 1) = true
+    - student isOpen(2, 1) = false
+    - by definition, a full site is open
+  * filename = heart25.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 7) = true
+    - student isOpen(2, 7) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 2: open random sites until the system percolates
+  * n = 3
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 2) = true
+    - student isOpen(2, 2) = false
+    - by definition, a full site is open
+  * n = 5
+    - isFull() and isOpen() are inconsistent after 3 sites opened
+    - student isFull(2, 3) = true
+    - student isOpen(2, 3) = false
+    - by definition, a full site is open
+  * n = 10
+    - isFull() and isOpen() are inconsistent after 7 sites opened
+    - student isFull(2, 3) = true
+    - student isOpen(2, 3) = false
+    - by definition, a full site is open
+  * n = 10
+    - isFull() and isOpen() are inconsistent after 3 sites opened
+    - student isFull(2, 6) = true
+    - student isOpen(2, 6) = false
+    - by definition, a full site is open
+  * n = 20
+    - isFull() and isOpen() are inconsistent after 12 sites opened
+    - student isFull(2, 20) = true
+    - student isOpen(2, 20) = false
+    - by definition, a full site is open
+  * n = 20
+    - isFull() and isOpen() are inconsistent after 14 sites opened
+    - student isFull(2, 16) = true
+    - student isOpen(2, 16) = false
+    - by definition, a full site is open
+  * n = 50
+    - isFull() and isOpen() are inconsistent after 123 sites opened
+    - student isFull(2, 11) = true
+    - student isOpen(2, 11) = false
+    - by definition, a full site is open
+  * n = 50
+    - isFull() and isOpen() are inconsistent after 142 sites opened
+    - student isFull(2, 2) = true
+    - student isOpen(2, 2) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 3: open predetermined sites for n = 1 and n = 2 (corner case test)
+  * filename = input1.txt
+
+    java.lang.IllegalArgumentException: index -1 is not between 0 and 2
+
+    edu.princeton.cs.algs4.WeightedQuickUnionUF.validate(WeightedQuickUnionUF.java:114)
+    edu.princeton.cs.algs4.WeightedQuickUnionUF.findNoCount(WeightedQuickUnionUF.java:121)
+    edu.princeton.cs.algs4.WeightedQuickUnionUF.union(WeightedQuickUnionUF.java:149)
+    Percolation.open(Percolation.java:60)
+    TestPercolation.checkFile(TestPercolation.java:203)
+    TestPercolation.test3(TestPercolation.java:688)
+    TestPercolation.main(TestPercolation.java:969)
+
+  * filename = input1-no.txt
+  * filename = input2.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 1) = true
+    - student isOpen(2, 1) = false
+    - by definition, a full site is open
+  * filename = input2-no.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 1) = true
+    - student isOpen(2, 1) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 4: check predetermined sites with long percolating path
+  * filename = snake13.txt
+  * filename = snake101.txt
+==> passed
+
+Test 5: open every site
+  * filename = input5.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 1) = true
+    - student isOpen(2, 1) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 6: open random sites until the system percolates,
+        allowing open() to be called on a site more than once
+  * n = 3
+    - isFull() and isOpen() are inconsistent after 2 sites opened
+    - student isFull(2, 1) = true
+    - student isOpen(2, 1) = false
+    - by definition, a full site is open
+  * n = 5
+    - isFull() and isOpen() are inconsistent after 10 sites opened
+    - student isFull(2, 2) = true
+    - student isOpen(2, 2) = false
+    - by definition, a full site is open
+  * n = 10
+    - isFull() and isOpen() are inconsistent after 3 sites opened
+    - student isFull(2, 4) = true
+    - student isOpen(2, 4) = false
+    - by definition, a full site is open
+  * n = 10
+    - isFull() and isOpen() are inconsistent after 27 sites opened
+    - student isFull(2, 6) = true
+    - student isOpen(2, 6) = false
+    - by definition, a full site is open
+  * n = 20
+    - isFull() and isOpen() are inconsistent after 10 sites opened
+    - student isFull(2, 16) = true
+    - student isOpen(2, 16) = false
+    - by definition, a full site is open
+  * n = 20
+    - isFull() and isOpen() are inconsistent after 13 sites opened
+    - student isFull(2, 15) = true
+    - student isOpen(2, 15) = false
+    - by definition, a full site is open
+  * n = 50
+    - isFull() and isOpen() are inconsistent after 276 sites opened
+    - student isFull(2, 13) = true
+    - student isOpen(2, 13) = false
+    - by definition, a full site is open
+  * n = 50
+    - isFull() and isOpen() are inconsistent after 126 sites opened
+    - student isFull(2, 17) = true
+    - student isOpen(2, 17) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 7: open random sites with large n
+  * n = 250
+    - isFull() returns wrong value after 58 sites opened
+    - student   isFull(2, 212) = true
+    - reference isFull(2, 212) = false
+
+    - failed on call 276 of 1000
+
+  * n = 500
+    - isFull() returns wrong value after 60 sites opened
+    - student   isFull(2, 28) = true
+    - reference isFull(2, 28) = false
+
+    - failed on call 354 of 1000
+
+  * n = 1000
+  * n = 2000
+==> FAILED
+
+Test 8: call methods with invalid arguments
+  * n = 10, (row, col) = (-1, 5)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (11, 5)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (0, 5)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (5, -1)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+    - isFull() fails to throw an exception
+    - isFull() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (5, 11)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+    - isFull() fails to throw an exception
+    - isFull() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (5, 0)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+    - isFull() fails to throw an exception
+    - isFull() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (-2147483648, -2147483648)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+  * n = 10, (row, col) = (2147483647, 2147483647)
+    - open() throws the wrong exception
+    - open() throws a java.lang.ArrayIndexOutOfBoundsException
+    - open() should throw a java.lang.IllegalArgumentException
+
+    - isOpen() throws the wrong exception
+    - isOpen() throws a java.lang.ArrayIndexOutOfBoundsException
+    - isOpen() should throw a java.lang.IllegalArgumentException
+
+==> FAILED
+
+Test 9: call constructor with invalid argument
+  * n = -10
+    - the constructor throws the wrong exception
+    - the constructor throws a java.lang.NegativeArraySizeException
+    - the constructor should throw a java.lang.IllegalArgumentException
+
+  * n = -1
+    - the constructor throws the wrong exception
+    - the constructor throws a java.lang.NegativeArraySizeException
+    - the constructor should throw a java.lang.IllegalArgumentException
+
+  * n = 0
+    - the constructor fails to throw an exception
+    - the constructor should throw a java.lang.IllegalArgumentException
+
+==> FAILED
+
+Test 10: create multiple Percolation objects at the same time
+        (to make sure you didn't store data in static variables)
+    - isFull() and isOpen() are inconsistent after 2 sites opened
+    - student isFull(2, 2) = true
+    - student isOpen(2, 2) = false
+    - by definition, a full site is open
+    - isFull() and isOpen() are inconsistent after 10 sites opened
+    - student isFull(2, 12) = true
+    - student isOpen(2, 12) = false
+    - by definition, a full site is open
+    - isFull() and isOpen() are inconsistent after 5 sites opened
+    - student isFull(2, 9) = true
+    - student isOpen(2, 9) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 11: open predetermined list of sites using file inputs,
+         but permute the order in which methods are called
+  * filename = input8.txt;  order =     isFull(),     isOpen(), percolates()
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+  * filename = input8.txt;  order =     isFull(), percolates(),     isOpen()
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+  * filename = input8.txt;  order =     isOpen(),     isFull(), percolates()
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+  * filename = input8.txt;  order =     isOpen(), percolates(),     isFull()
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+  * filename = input8.txt;  order = percolates(),     isOpen(),     isFull()
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+  * filename = input8.txt;  order = percolates(),     isFull(),     isOpen()
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+==> FAILED
+
+Test 12: call open(), isOpen(), and numberOfOpenSites()
+         in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 5, trials = 20, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 7, trials = 10, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 10, trials = 5, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 20, trials = 2, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 50, trials = 1, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+==> passed
+
+Test 13: call open() and percolates() in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+    - percolates() returns wrong value after 2 sites opened
+    - student   percolates() = true
+    - reference percolates() = false
+
+    - percolates() returns wrong value after 2 sites opened
+    - student   percolates() = true
+    - reference percolates() = false
+
+    - failed on trial 2 of 40
+
+  * n = 5, trials = 20, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 7, trials = 10, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 10, trials = 5, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 20, trials = 2, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 50, trials = 1, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+==> FAILED
+
+Test 14: call open() and isFull() in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - failed on trial 1 of 40
+    - sequence of operations was:
+         percolation.open(2, 3)
+         percolation.open(1, 2)
+         percolation.isFull(row, col) for each row and col
+
+  * n = 5, trials = 20, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - failed on trial 1 of 20
+    - sequence of operations was:
+         percolation.open(3, 4)
+         percolation.open(3, 2)
+         percolation.open(4, 1)
+         percolation.open(3, 3)
+         percolation.open(3, 5)
+         percolation.isFull(row, col) for each row and col
+         percolation.open(5, 2)
+         percolation.open(1, 1)
+         percolation.isFull(row, col) for each row and col
+
+  * n = 7, trials = 10, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+    - isFull() returns wrong value after 13 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - failed on trial 1 of 10
+
+  * n = 10, trials = 5, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+    - isFull() returns wrong value after 6 sites opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - failed on trial 1 of 5
+    - sequence of operations was:
+         percolation.isFull(row, col) for each row and col
+         percolation.open(4, 1)
+         percolation.isFull(row, col) for each row and col
+         percolation.open(6, 10)
+         percolation.isFull(row, col) for each row and col
+         percolation.isFull(row, col) for each row and col
+         percolation.isFull(row, col) for each row and col
+         percolation.isFull(row, col) for each row and col
+         percolation.open(7, 3)
+         percolation.isFull(row, col) for each row and col
+         percolation.isFull(row, col) for each row and col
+         percolation.open(3, 7)
+         percolation.open(1, 1)
+         percolation.open(7, 9)
+         percolation.isFull(row, col) for each row and col
+
+  * n = 20, trials = 2, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+    - isFull() returns wrong value after 66 sites opened
+    - student   isFull(2, 12) = true
+    - reference isFull(2, 12) = false
+
+    - failed on trial 1 of 2
+
+  * n = 50, trials = 1, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+    - isFull() returns wrong value after 73 sites opened
+    - student   isFull(2, 26) = true
+    - reference isFull(2, 26) = false
+
+    - failed on trial 1 of 1
+
+==> FAILED
+
+Test 15: call all methods in random order until just before system percolates
+  * n = 3, trials = 40, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - isFull() returns wrong value after 3 sites opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - isFull() returns wrong value after 3 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - percolates() returns wrong value after 3 sites opened
+    - student   percolates() = true
+    - reference percolates() = false
+
+    - percolates() returns wrong value after 3 sites opened
+    - student   percolates() = true
+    - reference percolates() = false
+
+    - failed on trial 9 of 40
+
+  * n = 5, trials = 20, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+    - isFull() returns wrong value after 12 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+    - isFull() returns wrong value after 4 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - isFull() returns wrong value after 6 sites opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - isFull() returns wrong value after 4 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - isFull() returns wrong value after 10 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - isFull() returns wrong value after 4 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - isFull() returns wrong value after 8 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - isFull() returns wrong value after 4 sites opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - isFull() returns wrong value after 6 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - isFull() returns wrong value after 3 sites opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+  * n = 7, trials = 10, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 7) = true
+    - reference isFull(2, 7) = false
+
+    - isFull() returns wrong value after 6 sites opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+    - isFull() returns wrong value after 18 sites opened
+    - student   isFull(2, 7) = true
+    - reference isFull(2, 7) = false
+
+    - isFull() returns wrong value after 17 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+    - isFull() returns wrong value after 4 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - isFull() returns wrong value after 5 sites opened
+    - student   isFull(2, 7) = true
+    - reference isFull(2, 7) = false
+
+    - isFull() returns wrong value after 3 sites opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+  * n = 10, trials = 5, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+    - isFull() returns wrong value after 3 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+    - isFull() returns wrong value after 5 sites opened
+    - student   isFull(2, 10) = true
+    - reference isFull(2, 10) = false
+
+    - isFull() returns wrong value after 12 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - isFull() returns wrong value after 20 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+  * n = 20, trials = 2, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+    - isFull() returns wrong value after 47 sites opened
+    - student   isFull(2, 13) = true
+    - reference isFull(2, 13) = false
+
+    - isFull() returns wrong value after 44 sites opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+  * n = 50, trials = 1, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+    - isFull() returns wrong value after 124 sites opened
+    - student   isFull(2, 19) = true
+    - reference isFull(2, 19) = false
+
+==> FAILED
+
+Test 16: call all methods in random order until almost all sites are open
+         (with inputs not prone to backwash)
+  * n = 3
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - failed on trial 2 of 40
+
+  * n = 5
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - failed on trial 1 of 20
+
+  * n = 7
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - failed on trial 1 of 10
+
+  * n = 10
+    - isFull() returns wrong value after 9 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - failed on trial 1 of 5
+
+  * n = 20
+    - isFull() returns wrong value after 97 sites opened
+    - student   isFull(2, 19) = true
+    - reference isFull(2, 19) = false
+
+    - failed on trial 1 of 2
+
+  * n = 50
+    - isFull() returns wrong value after 14 sites opened
+    - student   isFull(2, 6) = true
+    - reference isFull(2, 6) = false
+
+    - failed on trial 1 of 1
+
+==> FAILED
+
+Test 17: substitute WeightedQuickUnionUF data type that sets root nondeterministically;
+         call all methods in random order until almost all sites are open
+         (with inputs not prone to backwash)
+  * n = 3
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - failed on trial 2 of 40
+
+  * n = 5
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - failed on trial 2 of 20
+
+  * n = 7
+    - isFull() returns wrong value after 9 sites opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - failed on trial 1 of 10
+
+  * n = 10
+    - isFull() returns wrong value after 9 sites opened
+    - student   isFull(2, 9) = true
+    - reference isFull(2, 9) = false
+
+    - failed on trial 1 of 5
+
+  * n = 20
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 19) = true
+    - reference isFull(2, 19) = false
+
+    - failed on trial 1 of 2
+
+  * n = 50
+    - isFull() returns wrong value after 134 sites opened
+    - student   isFull(2, 32) = true
+    - reference isFull(2, 32) = false
+
+    - failed on trial 1 of 1
+
+==> FAILED
+
+Test 18: check for backwash with predetermined sites
+  * filename = input20.txt
+    - isFull() and isOpen() are inconsistent after 6 sites opened
+    - student isFull(2, 1) = true
+    - student isOpen(2, 1) = false
+    - by definition, a full site is open
+  * filename = input10.txt
+    - isFull() and isOpen() are inconsistent after 5 sites opened
+    - student isFull(2, 4) = true
+    - student isOpen(2, 4) = false
+    - by definition, a full site is open
+  * filename = input50.txt
+    - isFull() and isOpen() are inconsistent after 6 sites opened
+    - student isFull(2, 27) = true
+    - student isOpen(2, 27) = false
+    - by definition, a full site is open
+  * filename = jerry47.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 43) = true
+    - student isOpen(2, 43) = false
+    - by definition, a full site is open
+  * filename = sedgewick60.txt
+    - isFull() and isOpen() are inconsistent after 3 sites opened
+    - student isFull(2, 47) = true
+    - student isOpen(2, 47) = false
+    - by definition, a full site is open
+  * filename = wayne98.txt
+    - isFull() and isOpen() are inconsistent after 9 sites opened
+    - student isFull(2, 66) = true
+    - student isOpen(2, 66) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 19: check for backwash with predetermined sites that have
+         multiple percolating paths
+  * filename = input3.txt
+    - isFull() and isOpen() are inconsistent after 1 site opened
+    - student isFull(2, 3) = true
+    - student isOpen(2, 3) = false
+    - by definition, a full site is open
+  * filename = input4.txt
+    - isFull() and isOpen() are inconsistent after 5 sites opened
+    - student isFull(2, 4) = true
+    - student isOpen(2, 4) = false
+    - by definition, a full site is open
+  * filename = input7.txt
+    - isFull() and isOpen() are inconsistent after 5 sites opened
+    - student isFull(2, 1) = true
+    - student isOpen(2, 1) = false
+    - by definition, a full site is open
+==> FAILED
+
+Test 20: call all methods in random order until all sites are open
+         (these inputs are prone to backwash)
+  * n = 3
+    - isFull() returns wrong value after 7 sites opened
+    - student   isFull(2, 3) = true
+    - reference isFull(2, 3) = false
+
+    - failed on trial 2 of 40
+
+  * n = 5
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 4) = true
+    - reference isFull(2, 4) = false
+
+    - failed on trial 1 of 20
+
+  * n = 7
+    - isFull() returns wrong value after 13 sites opened
+    - student   isFull(2, 7) = true
+    - reference isFull(2, 7) = false
+
+    - failed on trial 1 of 10
+
+  * n = 10
+    - isFull() returns wrong value after 9 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - failed on trial 1 of 5
+
+  * n = 20
+    - isFull() returns wrong value after 47 sites opened
+    - student   isFull(2, 6) = true
+    - reference isFull(2, 6) = false
+
+    - failed on trial 1 of 2
+
+  * n = 50
+    - isFull() returns wrong value after 16 sites opened
+    - student   isFull(2, 25) = true
+    - reference isFull(2, 25) = false
+
+    - failed on trial 1 of 1
+
+==> FAILED
+
+Test 21: substitute WeightedQuickUnionUF data type that sets root nondeterministically;
+         call all methods in random order until all sites are open
+         (these inputs are prone to backwash)
+  * n = 3
+    - isFull() returns wrong value after 1 site opened
+    - student   isFull(2, 1) = true
+    - reference isFull(2, 1) = false
+
+    - failed on trial 1 of 40
+
+  * n = 5
+    - isFull() returns wrong value after 2 sites opened
+    - student   isFull(2, 5) = true
+    - reference isFull(2, 5) = false
+
+    - failed on trial 1 of 20
+
+  * n = 7
+    - isFull() returns wrong value after 8 sites opened
+    - student   isFull(2, 2) = true
+    - reference isFull(2, 2) = false
+
+    - failed on trial 1 of 10
+
+  * n = 10
+    - isFull() returns wrong value after 4 sites opened
+    - student   isFull(2, 9) = true
+    - reference isFull(2, 9) = false
+
+    - failed on trial 1 of 5
+
+  * n = 20
+    - isFull() returns wrong value after 16 sites opened
+    - student   isFull(2, 15) = true
+    - reference isFull(2, 15) = false
+
+    - failed on trial 1 of 2
+
+  * n = 50
+    - isFull() returns wrong value after 29 sites opened
+    - student   isFull(2, 45) = true
+    - reference isFull(2, 45) = false
+
+    - failed on trial 1 of 1
+
+==> FAILED
+
+
+Total: 2/21 tests passed!
+
+
+================================================================
+********************************************************************************
+*  TESTING CORRECTNESS (substituting reference Percolation)
+********************************************************************************
+
+Testing correctness of PercolationStats
+*-----------------------------------------------------------
+Running 17 total tests.
+
+Test 1: check formatting of output of main()
+  % java-algs4 PercolationStats 20 10
+  mean                    = 0.5940189999999999
+  stddev                  = 0.009136254730744456
+  95% confidence interval = [0.5927527796957475,0.5952852203042522]
+
+  % java-algs4 PercolationStats 200 100
+  mean                    = 0.5916410000000001
+  stddev                  = 0.009999697293398231
+  95% confidence interval = [0.590255112661869,0.5930268873381311]
+
+==> passed
+
+Test 2: check that methods in PercolationStats do not print to standard output
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 3: check that mean() returns value in expected range
+  * n =   2, trials = 10000
+  * n =   5, trials = 10000
+  * n =  10, trials = 10000
+  * n =  25, trials = 10000
+==> passed
+
+Test 4: check that stddev() returns value in expected range
+  * n =   2, trials = 10000
+  * n =   5, trials = 10000
+  * n =  10, trials = 10000
+  * n =  25, trials = 10000
+==> passed
+
+Test 5: check that PercolationStats constructor creates
+        trials Percolation objects, each of size n-by-n
+  * n =  15, trials =  15
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 6: check that PercolationStats.main() creates
+        trials Percolation objects, each of size n-by-n
+  * n =  15, trials =  15
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 15
+
+  * n =  20, trials =  10
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 10
+
+  * n =  50, trials =  20
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 20
+
+  * n = 100, trials =  50
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 50
+
+  * n =  64, trials = 150
+    - number of Percolation objects created by student   main() = 100
+    - number of Percolation objects created by reference main() = 150
+
+==> FAILED
+
+Test 7: check that PercolationStats calls open() until system percolates
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 8: check that PercolationStats does not call open() after system percolates
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 9: check that mean() is consistent with the number of intercepted calls to open()
+        on blocked sites
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 10: check that stddev() is consistent with the number of intercepted calls to open()
+         on blocked sites
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 11: check that confidenceLo() and confidenceHigh() are consistent with mean() and stddev()
+  * n =  20, trials =  10
+    - PercolationStats confidence low  = 0.567403279803103
+    - PercolationStats confidence high = 0.6165967201968972
+    - PercolationStats mean            = 0.5920000000000001
+    - PercolationStats stddev          = 0.05612238610592231
+    - T                                = 10
+    - student T                        = 10
+    - mean - 1.96 * stddev / sqrt(T)   = 0.5572149847076521
+    - mean + 1.96 * stddev / sqrt(T)   = 0.6267850152923481
+
+  * n =  50, trials =  20
+    - PercolationStats confidence low  = 0.598133443962228
+    - PercolationStats confidence high = 0.6138265560377719
+    - PercolationStats mean            = 0.60598
+    - PercolationStats stddev          = 0.0283079233840243
+    - T                                = 20
+    - student T                        = 20
+    - mean - 1.96 * stddev / sqrt(T)   = 0.5935735055662472
+    - mean + 1.96 * stddev / sqrt(T)   = 0.6183864944337527
+
+  * n = 100, trials =  50
+    - PercolationStats confidence low  = 0.5897106419399879
+    - PercolationStats confidence high = 0.5956933580600122
+    - PercolationStats mean            = 0.5927020000000001
+    - PercolationStats stddev          = 0.015262030918429632
+    - T                                = 50
+    - student T                        = 50
+    - mean - 1.96 * stddev / sqrt(T)   = 0.5884715808616168
+    - mean + 1.96 * stddev / sqrt(T)   = 0.5969324191383834
+
+  * n =  64, trials = 150
+    - PercolationStats confidence low  = 0.5862613615539896
+    - PercolationStats confidence high = 0.5970849926126771
+    - PercolationStats mean            = 0.5916731770833333
+    - PercolationStats stddev          = 0.02208904297691334
+    - T                                = 150
+    - student T                        = 150
+    - mean - 1.96 * stddev / sqrt(T)   = 0.5881381939822767
+    - mean + 1.96 * stddev / sqrt(T)   = 0.5952081601843899
+
+==> FAILED
+
+Test 12: check that exception is thrown if either n or trials is out of bounds
+  * n = -23, trials =  42
+  * n =  23, trials =   0
+  * n = -42, trials =   0
+  * n =  42, trials =  -1
+  * n = -2147483648, trials = -2147483648
+==> passed
+
+Test 13: create two PercolationStats objects at the same time and check mean()
+         (to make sure you didn't store data in static variables)
+  * n1 =  50, trials1 =  10, n2 =  50, trials2 =   5
+  * n1 =  50, trials1 =   5, n2 =  50, trials2 =  10
+  * n1 =  50, trials1 =  10, n2 =  25, trials2 =  10
+  * n1 =  25, trials1 =  10, n2 =  50, trials2 =  10
+  * n1 =  50, trials1 =  10, n2 =  15, trials2 = 100
+  * n1 =  15, trials1 = 100, n2 =  50, trials2 =  10
+==> passed
+
+Test 14: check that the methods return the same value, regardless of
+         the order in which they are called
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 15: check that no calls to StdRandom.setSeed()
+  * n = 20, trials = 10
+  * n = 20, trials = 10
+  * n = 40, trials = 10
+  * n = 80, trials = 10
+==> passed
+
+Test 16: check distribution of number of sites opened until percolation
+  * n = 2, trials = 100000
+  * n = 3, trials = 100000
+  * n = 4, trials = 100000
+==> passed
+
+Test 17: check that each site is opened the expected number of times
+  * n = 2, trials = 100000
+  * n = 3, trials = 100000
+  * n = 4, trials = 100000
+==> passed
+
+
+Total: 15/17 tests passed!
+
+
+================================================================
+********************************************************************************
+*  MEMORY (substituting reference Percolation)
+********************************************************************************
+
+Analyzing memory of PercolationStats
+*-----------------------------------------------------------
+Running 4 total tests.
+
+Test 1a-1d: check memory usage as a function of T trials for n = 100
+            (max allowed: 8*T + 128 bytes)
+
+                 T        bytes
+--------------------------------------------
+=> passed       16           48         
+=> passed       32           48         
+=> passed       64           48         
+=> passed      128           48         
+==> 4/4 tests passed
+
+
+Estimated student memory = 48.00   (R^2 = 1.000)
+
+Total: 4/4 tests passed!
+
+
+================================================================
+
+
+
+********************************************************************************
+*  TIMING (substituting reference Percolation)
+********************************************************************************
+
+Timing PercolationStats
+*-----------------------------------------------------------
+Running 4 total tests.
+
+Test 1: Call PercolationStats constructor and instance methods and
+        count calls to StdStats.mean() and StdStats.stddev().
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 2: Call PercolationStats constructor and instance methods and
+        count calls to methods in StdRandom.
+  * n = 20, trials = 10
+  * n = 20, trials = 10
+  * n = 40, trials = 10
+  * n = 80, trials = 10
+==> passed
+
+Test 3: Call PercolationStats constructor and instance methods and
+        count calls to methods in Percolation.
+  * n =  20, trials =  10
+  * n =  50, trials =  20
+  * n = 100, trials =  50
+  * n =  64, trials = 150
+==> passed
+
+Test 4: Call PercolationStats constructor and instance methods with trials = 3
+        and values of n that go up by a multiplicative factor of sqrt(2).
+        The test passes when n reaches 2,896.
+
+     The approximate order-of-growth is n ^ (log ratio)
+
+         n  seconds log ratio
+     ------------------------
+       724     0.14       2.3
+      1024     0.32       2.3
+      1448     0.82       2.7
+      2048     1.97       2.5
+      2896     4.60       2.5
+==> passed
+
+
+Total: 4/4 tests passed!
+
+
+================================================================
+
+
+
+********************************************************************************
+*  MEMORY
+********************************************************************************
+
+Analyzing memory of Percolation
+*-----------------------------------------------------------
+Running 4 total tests.
+
+Test 1a-1d: check that total memory <= 17 n^2 + 128 n + 1024 bytes
+
+                 n        bytes
+--------------------------------------------
+=> passed       64        39096         
+=> passed      256       598200         
+=> passed      512      2375864         
+=> passed     1024      9470136         
+==> 4/4 tests passed
+
+
+Estimated student memory = 9.00 n^2 + 32.00 n + 184.00   (R^2 = 1.000)
+
+
+Test 2 (bonus): check that total memory <= 11 n^2 + 128 n + 1024 bytes
+   -  bonus available only if solution passes backwash correctness test
+==> FAILED
+
+
+Total: 4/4 tests passed!
+
+
+================================================================
+
+
+
+********************************************************************************
+*  TIMING
+********************************************************************************
+
+Timing Percolation
+*-----------------------------------------------------------
+Running 16 total tests.
+
+Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
+            the system percolates, interleaving calls to percolates() and open().
+            Count calls to connected(), union() and find().
+
+                                       2 * connected()
+                 n       union()              + find()        constructor
+-----------------------------------------------------------------------------------
+=> passed       16          199                   306                   1         
+=> passed       32          741                  1188                   1         
+=> passed       64         3151                  4992                   1         
+=> passed      128        11829                 19574                   1         
+=> passed      256        44150                 75736                   1         
+=> passed      512       183077                308910                   1         
+=> passed     1024       732822               1238690                   1         
+==> 7/7 tests passed
+
+
+If one of the values in the table violates the performance limits
+the factor by which you failed the test appears in parentheses.
+For example, (9.6x) in the union() column indicates that it uses
+9.6x too many calls.
+
+
+Tests 2a-2f: Check whether the number of calls to union(), connected(), and find()
+             is a constant per call to open(), isOpen(), isFull(), and percolates().
+             The table shows the maximum number of union() and find() calls made
+             during a single call to open(), isOpen(), isFull(), and percolates().
+             One call to connected() counts as two calls to find().
+
+                 n     per open()      per isOpen()    per isFull()    per percolates() 
+---------------------------------------------------------------------------------------------
+=> passed       16        4               0               2               2         
+=> passed       32        5               0               2               2         
+=> passed       64        5               0               2               2         
+=> passed      128        5               0               2               2         
+=> passed      256        5               0               2               2         
+=> passed      512        5               0               2               2         
+=> passed     1024        5               0               2               2         
+==> 7/7 tests passed
+
+
+
+Running time (in seconds) depends on the machine on which the script runs.
+
+
+Test 3: Create an n-by-n percolation system; interleave calls to percolates()
+        and open() until the system percolates. The values of n go up by a
+        factor of sqrt(2). The test is passed if n >= 4096 in under 10 seconds.
+
+     The approximate order-of-growth is n ^ (log ratio)
+
+                        log   union-find     log
+         n  seconds   ratio   operations   ratio
+     -------------------------------------------
+      1448     0.21     2.6      5412010     2.0
+      2048     0.55     2.7     10855810     2.0
+      2896     1.52     2.9     21634906     2.0
+      4096     3.67     2.5     43387502     2.0
+==> passed
+
+
+
+Test 4: Create an n-by-n percolation system; interleave calls to open(),
+        percolates(), isOpen(), isFull(), and numberOfOpenSites() until.
+        the system percolates. The values of n go up by a factor of sqrt(2).
+        The test is passed if n >= 4096 in under 10 seconds.
+
+                        log   union-find     log
+         n  seconds   ratio   operations   ratio
+     -------------------------------------------
+      1448     0.22     2.5      7929926     2.0
+      2048     0.55     2.7     15828696     2.0
+      2896     1.57     3.0     31649084     2.0
+      4096     3.45     2.3     63394104     2.0
+==> passed
+
+
+Total: 16/16 tests passed!
+
+
+================================================================

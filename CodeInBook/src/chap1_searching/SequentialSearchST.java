@@ -1,4 +1,4 @@
-package searching;
+package chap1_searching;
 
 public class SequentialSearchST<Key, Value>
 {
