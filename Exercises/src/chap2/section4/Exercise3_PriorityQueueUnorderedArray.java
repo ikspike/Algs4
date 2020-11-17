@@ -82,6 +82,12 @@ public class Exercise3_PriorityQueueUnorderedArray
             exch(a, maxIndex, N - 1);
             a[N - 1] = null;
             N--;
+
+            if (N > 0 && N == a.length / 4)
+            {
+                resize(a.length / 2);
+            }
+
             return maxValue;
         }
     }
