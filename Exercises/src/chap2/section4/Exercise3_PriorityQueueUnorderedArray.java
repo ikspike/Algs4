@@ -7,7 +7,7 @@ public class Exercise3_PriorityQueueUnorderedArray {
         private int N = 0;
 
         private void resize(int capacity) {
-            Key[] temp = (Key[]) new Object[capacity];
+            Key[] temp = (Key[]) new Comparable[capacity];
             for (int i = 0; i < N; i++) {
                 temp[i] = a[i];
             }
